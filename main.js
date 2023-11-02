@@ -20,7 +20,7 @@ class Queue{
 
 const promiseWaiting = (message, timeout) => {
     // closure
-    // return a function that most be execute with()
+    // return a function that most be execute with "()"
     return () => {
         return new Promise((res, rej) => {
             setTimeout(() => {
@@ -31,10 +31,12 @@ const promiseWaiting = (message, timeout) => {
 }
 
 const fetchWaiting = function(url){
+    // closure
+    // return a function that most be execute with "()"
     return async ()=> {
-        // esperar un segundo antes de continuar
+        // wait one second
         await new Promise(r => setTimeout(r, 1000));
-        return fetch(url).then(res => res.json());
+        return (await fetch(url)).json();
     }
 }
 
@@ -60,16 +62,3 @@ async function run(){
 }
 
 run();
-
-// const promise = new Promise((res, rej) => {
-//     setTimeout(() => {
-//         res('promesa 1');
-//     }, 4000);
-// });
-
-// promise.then(res => console.log(res));
-
-// IIFE way
-// (async () => {
-//     console.log(await promise);
-// })();
